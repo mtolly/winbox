@@ -31,6 +31,16 @@ elif [ "$1" = "install" ]; then
   for pkg in "$@"; do
     "$WINBOX_BINDIR/installers/$pkg"
   done
+elif [ "$1" = "cabal" ]; then
+  if [ "$2" = "configure" ] || [ "$2" = "install" ]; then
+    "$@" --extra-include-dirs="$WB/include" --extra-lib-dirs="$WB/lib"
+  else
+    "$@"
+  fi
+elif [ "$1" = "gcc" ] || [ "$1" = "g++" ]; then
+  "$@" -I"$WB/include" -L"$WB/lib"
+elif type "$1" > /dev/null; then
+  "$@"
 else
   echo "$1 is not a recognized command."
   exit 1
