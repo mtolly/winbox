@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+if [ -f .winbox/bin/pkg-config.exe ]; then
+  exit 0
+fi
+
+mingw-get install msys-wget msys-unzip
+
+wget -O "$WINBOX/download/pkg-config_0.26-1_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/pkg-config_0.26-1_win32.zip"
+wget -O "$WINBOX/download/glib_2.28.8-1_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/glib/2.28/glib_2.28.8-1_win32.zip"
+wget -O "$WINBOX/download/gettext-runtime_0.18.1.1-2_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/gettext-runtime_0.18.1.1-2_win32.zip"
+wget -O "$WINBOX/download/pkg-config-dev_0.26-1_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/pkg-config-dev_0.26-1_win32.zip"
+unzip "$WINBOX/download/pkg-config_0.26-1_win32.zip" -d "$WINBOX"
+unzip "$WINBOX/download/glib_2.28.8-1_win32.zip" -d "$WINBOX"
+unzip "$WINBOX/download/gettext-runtime_0.18.1.1-2_win32.zip" -d "$WINBOX"
+unzip "$WINBOX/download/pkg-config-dev_0.26-1_win32.zip" -d "$WINBOX"
+
+# needed for libsndfile?
+mkdir -p /mingw/share/aclocal/
+cp "$WINBOX/share/aclocal/pkg.m4" /mingw/share/aclocal/
