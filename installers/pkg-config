@@ -7,15 +7,15 @@ fi
 
 mingw-get install msys-wget msys-unzip
 
-wget -O "$WINBOX/download/pkg-config_0.26-1_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/pkg-config_0.26-1_win32.zip"
-wget -O "$WINBOX/download/glib_2.28.8-1_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/glib/2.28/glib_2.28.8-1_win32.zip"
-wget -O "$WINBOX/download/gettext-runtime_0.18.1.1-2_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/gettext-runtime_0.18.1.1-2_win32.zip"
-wget -O "$WINBOX/download/pkg-config-dev_0.26-1_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/pkg-config-dev_0.26-1_win32.zip"
-unzip "$WINBOX/download/pkg-config_0.26-1_win32.zip" -d "$WINBOX"
-unzip "$WINBOX/download/glib_2.28.8-1_win32.zip" -d "$WINBOX"
-unzip "$WINBOX/download/gettext-runtime_0.18.1.1-2_win32.zip" -d "$WINBOX"
-unzip "$WINBOX/download/pkg-config-dev_0.26-1_win32.zip" -d "$WINBOX"
+wget -O "$WB/download/pkg-config_0.26-1_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/pkg-config_0.26-1_win32.zip"
+wget -O "$WB/download/glib_2.28.8-1_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/glib/2.28/glib_2.28.8-1_win32.zip"
+wget -O "$WB/download/gettext-runtime_0.18.1.1-2_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/gettext-runtime_0.18.1.1-2_win32.zip"
+wget -O "$WB/download/pkg-config-dev_0.26-1_win32.zip" "http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/pkg-config-dev_0.26-1_win32.zip"
+unzip "$WB/download/pkg-config_0.26-1_win32.zip" -d "$WB"
+unzip "$WB/download/glib_2.28.8-1_win32.zip" -d "$WB"
+unzip "$WB/download/gettext-runtime_0.18.1.1-2_win32.zip" -d "$WB"
+unzip "$WB/download/pkg-config-dev_0.26-1_win32.zip" -d "$WB"
 
 # needed for libsndfile?
 mkdir -p /mingw/share/aclocal/
-cp "$WINBOX/share/aclocal/pkg.m4" /mingw/share/aclocal/
+cp "$WB/share/aclocal/pkg.m4" /mingw/share/aclocal/

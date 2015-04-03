@@ -1,0 +1,37 @@
+#!/bin/bash
+mount c:/mingw /mingw 2> /dev/null
+set -e
+
+export WINBOX="${WINBOX-$(pwd)}"
+export WINBOX_BINDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+export WINBOX_BIN="$WINBOX_BINDIR/winbox"
+export WB="$WINBOX/.winbox"
+
+export CPPFLAGS="-I$(printf %q "$WB")/include $CPPFLAGS"
+export LDFLAGS="-L$(printf %q "$WB")/lib $LDFLAGS"
+export PATH="$WB/bin:$PATH"
+export ACLOCAL_PATH="$WB/share/aclocal:$ACLOCAL_PATH"
+export PKG_CONFIG_PATH="$WB/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+if [ "$#" -eq 0 ]; then
+  echo "No command given."
+  exit 1
+elif [ "$1" = "init" ]; then
+  if [ -d "$WB" ]; then
+    echo "There's already a Winbox in $WINBOX"
+  else
+    mkdir "$WB"
+    echo "Made a new Winbox in $WINBOX"
+  fi
+elif [ "$1" = "install" ]; then
+  if [ ! -d "$WB/download" ]; then
+    mkdir "$WB/download"
+  fi
+  shift # drop the "install"
+  for pkg in "$@"; do
+    "$WINBOX_BINDIR/installers/$pkg"
+  done
+else
+  echo "$1 is not a recognized command."
+  exit 1
+fi

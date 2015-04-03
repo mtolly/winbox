@@ -1,17 +1,17 @@
 #!/bin/bash
 set -e
 
-if [ -f "$WINBOX/bin/libvorbis-0.dll" ]; then
+if [ -f "$WB/bin/libvorbis-0.dll" ]; then
   exit 0
 fi
 
-"$WINBOX_SCRIPTS/wb-install" libogg
+"$WINBOX_BIN" install libogg
 
 mingw-get install msys-wget mingw32-gcc
 
-wget -O "$WINBOX/download/libvorbis-1.3.5.tar.gz" "http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.gz"
-tar -C "$WINBOX/download" -xvzf "$WINBOX/download/libvorbis-1.3.5.tar.gz"
-cd "$WINBOX/download/libvorbis-1.3.5"
-./configure --prefix="$WINBOX"
+wget -O "$WB/download/libvorbis-1.3.5.tar.gz" "http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.gz"
+tar -C "$WB/download" -xvzf "$WB/download/libvorbis-1.3.5.tar.gz"
+cd "$WB/download/libvorbis-1.3.5"
+./configure --prefix="$WB"
 make
 make install

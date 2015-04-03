@@ -1,19 +1,17 @@
 #!/bin/bash
 set -e
 
-if [ -f "$WINBOX/bin/libsndfile-1.dll" ]; then
+if [ -f "$WB/bin/libsndfile-1.dll" ]; then
   exit 0
 fi
 
-"$WINBOX_SCRIPTS/wb-install" libogg
-"$WINBOX_SCRIPTS/wb-install" libvorbis
-"$WINBOX_SCRIPTS/wb-install" libflac
-"$WINBOX_SCRIPTS/wb-install" pkg-config
-"$WINBOX_SCRIPTS/wb-install" python
+"$WINBOX_BIN" install libogg libvorbis libflac
+"$WINBOX_BIN" install pkg-config
+"$WINBOX_BIN" install python
 
 mingw-get install mingw32-gcc mingw32-autotools msys-autogen
 
-cd "$WINBOX/download"
+cd "$WB/download"
 if [ -d libsndfile ]; then
   cd libsndfile
   git pull
@@ -22,6 +20,6 @@ else
   cd libsndfile
 fi
 ./autogen.sh
-./configure --prefix="$WINBOX"
+./configure --prefix="$WB"
 make
 make install
