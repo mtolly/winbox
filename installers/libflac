@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+if [ -f "$WINBOX/bin/libFLAC-8.dll" ]; then
+  exit 0
+fi
+
+"$WINBOX_SCRIPTS/wb-install" libogg
+
+mingw-get install msys-wget mingw32-gcc mingw32-gcc-g++
+
+wget -O "$WINBOX/download/flac-1.3.1.tar.xz" "http://downloads.xiph.org/releases/flac/flac-1.3.1.tar.xz"
+tar -C "$WINBOX/download" -xf "$WINBOX/download/flac-1.3.1.tar.xz"
+cd "$WINBOX/download/flac-1.3.1"
+./configure --prefix="$WINBOX"
+make
+make install

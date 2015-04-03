@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+if [ -f "$WINBOX/bin/libsndfile-1.dll" ]; then
+  exit 0
+fi
+
+"$WINBOX_SCRIPTS/wb-install" libogg
+"$WINBOX_SCRIPTS/wb-install" libvorbis
+"$WINBOX_SCRIPTS/wb-install" libflac
+"$WINBOX_SCRIPTS/wb-install" pkg-config
+"$WINBOX_SCRIPTS/wb-install" python
+
+mingw-get install mingw32-gcc mingw32-autotools msys-autogen
+
+cd "$WINBOX/download"
+if [ -d libsndfile ]; then
+  cd libsndfile
+  git pull
+else
+  git clone https://github.com/erikd/libsndfile
+  cd libsndfile
+fi
+./autogen.sh
+./configure --prefix="$WINBOX"
+make
+make install
