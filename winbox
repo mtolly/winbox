@@ -7,8 +7,6 @@ export WINBOX_BINDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 export WINBOX_BIN="$WINBOX_BINDIR/winbox"
 export WB="$WINBOX/.winbox"
 
-export CPPFLAGS="-I$(printf %q "$WB")/include $CPPFLAGS"
-export LDFLAGS="-L$(printf %q "$WB")/lib $LDFLAGS"
 export PATH="$WB/bin:$PATH"
 export ACLOCAL_PATH="$WB/share/aclocal:$ACLOCAL_PATH"
 export PKG_CONFIG_PATH="$WB/lib/pkgconfig:$PKG_CONFIG_PATH"

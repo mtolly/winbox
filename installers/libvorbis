@@ -9,9 +9,10 @@ fi
 
 mingw-get install msys-wget mingw32-gcc
 
-wget -O "$WB/download/libvorbis-1.3.5.tar.gz" "http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.gz"
-tar -C "$WB/download" -xvzf "$WB/download/libvorbis-1.3.5.tar.gz"
-cd "$WB/download/libvorbis-1.3.5"
+cd "$WB/download"
+wget -O libvorbis-1.3.5.tar.gz "http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.gz"
+tar -xvzf libvorbis-1.3.5.tar.gz
+cd libvorbis-1.3.5
 ./configure --prefix="$WB"
 make
 make install

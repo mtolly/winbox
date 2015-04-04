@@ -7,8 +7,8 @@ fi
 
 mingw-get install msys-wget
 
-wget -O "$WB/download/python-3.4.2.msi" "https://www.python.org/ftp/python/3.4.2/python-3.4.2.msi" --no-check-certificate
 cd "$WB/download"
+wget -O python-3.4.2.msi "https://www.python.org/ftp/python/3.4.2/python-3.4.2.msi" --no-check-certificate
 echo "Running Python installer. Make sure you add it to your PATH."
 msiexec -i python-3.4.2.msi
 echo "Python installed; now restart your shell."
