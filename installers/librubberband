@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+if [ -f "$WB/bin/librubberband.dll" ]; then
+  exit 0
+fi
+
+"$WINBOX_BIN" install libsndfile pthreads vamp-plugin-sdk ladspa-sdk fftw libsamplerate
+
+mingw-get install msys-wget mingw32-gcc mingw32-gcc-g++
+
+cd "$WB/download"
+wget -O rubberband-1.8.1.tar.bz2 "http://code.breakfastquay.com/attachments/download/34/rubberband-1.8.1.tar.bz2"
+tar -xvjf rubberband-1.8.1.tar.bz2
+cd rubberband-1.8.1
+./configure --prefix="$WB"
+sed -i 's/\.so/\.dll/' Makefile
+make
+make install
+cp "$WB/lib/librubberband.dll" "$WB/bin/librubberband.dll"

@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+if [ -f "$WB/bin/libsamplerate-0.dll" ]; then
+  exit 0
+fi
+
+mingw-get install msys-wget mingw32-gcc
+
+cd "$WB/download"
+wget -O libsamplerate-0.1.8.tar.gz "http://www.mega-nerd.com/SRC/libsamplerate-0.1.8.tar.gz"
+tar -xvzf libsamplerate-0.1.8.tar.gz
+cd libsamplerate-0.1.8
+./configure --prefix="$WB"
+make
+make install

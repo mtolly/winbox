@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+if [ -f "$WB/bin/OpenAL32.dll" ]; then
+  exit 0
+fi
+
+mingw-get install msys-wget msys-unzip
+
+cd "$WB/download"
+wget -O openal-soft-1.16.0-bin.zip "http://kcat.strangesoft.net/openal-soft-1.16.0-bin.zip"
+unzip -o openal-soft-1.16.0-bin.zip
+cp -R openal-soft-1.16.0-bin/bin/Win32/soft_oal.dll "$WB/bin/OpenAL32.dll"
+cp -R openal-soft-1.16.0-bin/include/* "$WB/include/"
+cp -R openal-soft-1.16.0-bin/libs/Win32/* "$WB/lib/"

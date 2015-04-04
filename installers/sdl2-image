@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+if [ -f "$WB/bin/SDL2_image.dll" ]; then
+  exit 0
+fi
+
+"$WINBOX_BIN" install sdl2
+
+mingw-get install msys-wget
+
+cd "$WB/download"
+wget -O SDL2_image-devel-2.0.0-mingw.tar.gz https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.0-mingw.tar.gz --no-check-certificate
+tar -xvzf SDL2_image-devel-2.0.0-mingw.tar.gz
+cp -R SDL2_image-2.0.0/i686-w64-mingw32/* "$WB/"
+# patch for a bug in SDL 2.0.3
+wget -O SDL_platform.h https://hg.libsdl.org/SDL/raw-file/e217ed463f25/include/SDL_platform.h --no-check-certificate
+cp SDL_platform.h "$WB/include/SDL2/"
+
