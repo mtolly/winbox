@@ -19,7 +19,17 @@ elif [ "$1" = "init" ]; then
     echo "There's already a Winbox in $WINBOX"
   else
     mkdir "$WB"
+    mkdir "$WB/bin/"
+    mkdir "$WB/include/"
+    mkdir "$WB/lib/"
     echo "Made a new Winbox in $WINBOX"
+  fi
+elif [ "$1" = "delete" ]; then
+  if [ -d "$WB" ]; then
+    rm -rf "$WB"
+    echo "Deleted the Winbox in $WINBOX"
+  else
+    echo "There's no Winbox in $WINBOX"
   fi
 elif [ "$1" = "install" ]; then
   if [ ! -d "$WB/download" ]; then

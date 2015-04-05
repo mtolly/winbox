@@ -5,9 +5,9 @@ if [ -f "$WB/bin/libsndfile-1.dll" ]; then
   exit 0
 fi
 
-"$WINBOX_BIN" install libogg libvorbis libflac
-"$WINBOX_BIN" install pkg-config
 "$WINBOX_BIN" install python
+"$WINBOX_BIN" install pkg-config
+"$WINBOX_BIN" install libogg libvorbis libflac
 
 mingw-get install mingw32-gcc mingw32-autotools msys-autogen
 

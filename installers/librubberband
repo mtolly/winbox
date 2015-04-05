@@ -5,6 +5,7 @@ if [ -f "$WB/bin/librubberband.dll" ]; then
   exit 0
 fi
 
+"$WINBOX_BIN" install pkg-config
 "$WINBOX_BIN" install libsndfile pthreads vamp-plugin-sdk ladspa-sdk fftw libsamplerate
 
 mingw-get install msys-wget mingw32-gcc mingw32-gcc-g++
