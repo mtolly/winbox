@@ -11,5 +11,5 @@ cd "$WB/download"
 wget -O SDL2-devel-2.0.3-mingw.tar.gz "http://libsdl.org/release/SDL2-devel-2.0.3-mingw.tar.gz"
 tar -xvzf SDL2-devel-2.0.3-mingw.tar.gz
 cp -R SDL2-2.0.3/i686-w64-mingw32/* "$WB/"
-# cp -R SDL2-2.0.3/include/* "$WB/include/"
-# cp -R SDL2-2.0.3/lib/x86/* "$WB/lib/"
+cp -R SDL2-2.0.3/include/* "$WB/include/"
+cp -R SDL2-2.0.3/lib/x86/* "$WB/lib/"

@@ -19,3 +19,4 @@ sed -i 's/\.so/\.dll/' Makefile
 make
 make install
 cp "$WB/lib/librubberband.dll" "$WB/bin/librubberband.dll"
+rm "$WB/lib/librubberband.a"
